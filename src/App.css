@@ -12,8 +12,15 @@
   display:flex;
   justify-content:center;
 }
-.App .card{
+.App .card {
   display:flex;
   justify-content:center;
-
+}
+.App .chart h3{
+  display:flex;
+  justify-content:center;
+}
+.App .cardHeader h3{
+  display:flex;
+  justify-content:center;
 }
