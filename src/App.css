@@ -19,8 +19,14 @@
 .App .chart h3{
   display:flex;
   justify-content:center;
+  color: #404040;
+}
+.App .chart .dropdown{
+  display:flex;
+  justify-content:center;
 }
 .App .cardHeader h3{
   display:flex;
   justify-content:center;
+  color: #404040;
 }
