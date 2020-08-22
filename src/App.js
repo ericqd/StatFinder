@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import {Form, Card, Icon, Dropdown, Menu, Table} from 'semantic-ui-react'
+import {Form, Dropdown, Menu, Table} from 'semantic-ui-react'
 import './App.css';
 import {Line} from 'react-chartjs-2';
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       playerStats: {},
       chartData:{},
       playerKey: {},
-      displayName:{bar:"|"}
+      playerInfo:{}
     }
   }
 
@@ -56,7 +56,7 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          displayName: {
+          playerInfo: {
             firstName: data["first_name"],
             lastName: data["last_name"],
             position: data["position"],
@@ -96,11 +96,12 @@ class App extends Component {
       var astArr = [];
       var rebArr = [];
       for(let i = 0; i < data.data.length; i++){
-        labelArr.push(data.data[i]["game"]["date"])
+        labelArr.push(data.data[i]["game"]["date"].substr(0,10))
         ptsArr.push(data.data[i]["pts"])
         astArr.push(data.data[i]["ast"])
         rebArr.push(data.data[i]["reb"])
       }
+      console.log(labelArr)
       if(newData.value === 1){
         this.setState({
           chartData: {
@@ -112,9 +113,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: ptsArr,
-                borderColor: "rgba(219,20,255,1)",
+                borderColor: "rgba(0,191,255,1)",
                 backgroundColor:[
-                  "rgba(219,20,255,1)"
+                  "rgba(0,191,255,1)"
                 ]
               }
             ]
@@ -132,9 +133,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: astArr,
-                borderColor: "rgba(219,20,255,1)",
+                borderColor: "rgba(0,191,255,1)",
                 backgroundColor:[
-                  "rgba(219,20,255,1)"
+                  "rgba(0,191,255,1)"
                 ]
               }
             ]
@@ -152,9 +153,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: rebArr,
-                borderColor: "rgba(219,20,255,1)",
+                borderColor: "rgba(0,191,255,1)",
                 backgroundColor:[
-                  "rgba(219,20,255,1)"
+                  "rgba(0,191,255,1)"
                 ]
               }
             ]
@@ -191,14 +192,14 @@ class App extends Component {
         <div className="playerInfo">
           <div>
             <h3>
-              {this.state.displayName.firstName} {this.state.displayName.lastName}
+              {this.state.playerInfo.firstName} {this.state.playerInfo.lastName}
               <br/>
-              {this.state.displayName.position} | {this.state.displayName.team}
+              {this.state.playerInfo.position} | {this.state.playerInfo.team}
             </h3>
           </div>
         </div>
         <div className="table"> 
-        <Table compact>
+        <Table inverted>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>GP</Table.HeaderCell>

@@ -3,7 +3,7 @@
   justify-content:center;
   font-size: 50px;
   padding:20px;
-  color: #17408B;
+  color: #F3F3F3;
   font-weight: 650;
   font-family:"Arial"
 }
@@ -14,12 +14,12 @@
 }
 .App .playerInfo{
   padding: 5px;
-  color: #17408B
+  color: #00BFFF;
 }
 .App .chart h2{
   display:flex;
   justify-content:center;
-  color: #404040;
+  color: #F3F3F3;
 }
 .App .chart .dropdown{
   display:flex;
@@ -28,5 +28,5 @@
 .App .cardHeader h2{
   display:flex;
   justify-content:center;
-  color: #404040;
+  color: #F3F3F3;
 }
