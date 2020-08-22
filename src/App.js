@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import {Form, Card, Icon, Dropdown, Menu} from 'semantic-ui-react'
+import {Form, Card, Icon, Dropdown, Menu, Table} from 'semantic-ui-react'
 import './App.css';
 import {Line} from 'react-chartjs-2';
 class App extends Component {
@@ -9,7 +9,8 @@ class App extends Component {
       playerName: null,
       playerStats: {},
       chartData:{},
-      playerKey: {}
+      playerKey: {},
+      displayName:{bar:"|"}
     }
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
         else{
           idArr.push(data.data[0].id)
           this.getPlayerStats(data.data[0].id)
-          // this.getChartData(data.data[0].id)
+          this.getPlayerInfo(data.data[0].id)
         }
       })
       .catch(err => {
@@ -49,46 +50,21 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
-  // getChartData = (playerId) => {
-  //   var labelArr = [];
-  //   var ptsArr = [];
-  //   var astArr = [];
-  //   var rebArr = [];
-  //   fetch(`https://www.balldontlie.io/api/v1/stats?seasons[]=2019&player_ids[]=${playerId}&start_date='2020-07-30'&end_date='2020-08-14'`)
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     for(let i = 0; i < data.data.length; i++){
-  //       labelArr.push(data.data[i]["game"]["date"])
-  //       ptsArr.push(data.data[i]["pts"])
-  //       astArr.push(data.data[i]["ast"])
-  //       rebArr.push(data.data[i]["reb"])
-  //     }
-  //   })
-  //   .catch(err => console.log(err))
-  //   this.setState({
-  //     chartData: {
-  //       key: Date.now(),
-  //       labels: labelArr,
-  //       datasets:[
-  //         {
-  //           label:"Points",
-  //           fill: false,
-  //           lineTension: 0.5,
-  //           data: ptsArr,
-  //           borderColor: "rgba(34, 167, 240, 1)",
-  //           backgroundColor:[
-  //             'rgba(255,99,132,0.6)',
-  //             'rgba(54,162,235,0.6)',
-  //             'rgba(255,206,86,0.6)',
-  //             'rgba(75,192,192,0.6)',
-  //             'rgba(153,159,64,0.6)',
-  //             'rgba(255,99,132,0.6)'
-  //           ]
-  //         }
-  //       ]
-  //     }
-  //   })
-  // }
+  
+  getPlayerInfo = (playerId) =>{
+    fetch(`https://www.balldontlie.io/api/v1/players/${playerId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          displayName: {
+            firstName: data["first_name"],
+            lastName: data["last_name"],
+            position: data["position"],
+            team: data["team"]["full_name"]
+          }
+        })
+      })
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.getPlayerId()
@@ -136,14 +112,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: ptsArr,
-                borderColor: "rgba(34, 167, 240, 1)",
+                borderColor: "rgba(219,20,255,1)",
                 backgroundColor:[
-                  'rgba(255,99,132,0.6)',
-                  'rgba(54,162,235,0.6)',
-                  'rgba(255,206,86,0.6)',
-                  'rgba(75,192,192,0.6)',
-                  'rgba(153,159,64,0.6)',
-                  'rgba(255,99,132,0.6)'
+                  "rgba(219,20,255,1)"
                 ]
               }
             ]
@@ -161,14 +132,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: astArr,
-                borderColor: "rgba(34, 167, 240, 1)",
+                borderColor: "rgba(219,20,255,1)",
                 backgroundColor:[
-                  'rgba(255,99,132,0.6)',
-                  'rgba(54,162,235,0.6)',
-                  'rgba(255,206,86,0.6)',
-                  'rgba(75,192,192,0.6)',
-                  'rgba(153,159,64,0.6)',
-                  'rgba(255,99,132,0.6)'
+                  "rgba(219,20,255,1)"
                 ]
               }
             ]
@@ -186,14 +152,9 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: rebArr,
-                borderColor: "rgba(34, 167, 240, 1)",
+                borderColor: "rgba(219,20,255,1)",
                 backgroundColor:[
-                  'rgba(255,99,132,0.6)',
-                  'rgba(54,162,235,0.6)',
-                  'rgba(255,206,86,0.6)',
-                  'rgba(75,192,192,0.6)',
-                  'rgba(153,159,64,0.6)',
-                  'rgba(255,99,132,0.6)'
+                  "rgba(219,20,255,1)"
                 ]
               }
             ]
@@ -223,58 +184,74 @@ class App extends Component {
         </div>
         <div className="cardHeader"> 
           <div>
-            <h3>'19 - '20 Season Averages</h3>
+            <h2>'19 - '20 Season Averages</h2>
             <br></br>
           </div>
         </div>
-        <div className="card"> 
-          <Card>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Games played: {this.state.playerStats["games_played"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Points: {this.state.playerStats["pts"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Rebounds: {this.state.playerStats["reb"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Assists: {this.state.playerStats["ast"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Field Goal %: {this.state.playerStats["fg_pct"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                3 Point %: {this.state.playerStats["fg3_pct"]} 
-              </a>
-            </Card.Content>
-            <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                Free Throw %: {this.state.playerStats["ft_pct"]} 
-              </a>
-            </Card.Content>
-          </Card>
+        <div className="playerInfo">
+          <div>
+            <h3>
+              {this.state.displayName.firstName} {this.state.displayName.lastName}
+              <br/>
+              {this.state.displayName.position} | {this.state.displayName.team}
+            </h3>
+          </div>
+        </div>
+        <div className="table"> 
+        <Table compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>GP</Table.HeaderCell>
+              <Table.HeaderCell>MIN</Table.HeaderCell>
+              <Table.HeaderCell>FGM</Table.HeaderCell>
+              <Table.HeaderCell>FGA</Table.HeaderCell>
+              <Table.HeaderCell>FGPCT</Table.HeaderCell>
+              <Table.HeaderCell>FG3M</Table.HeaderCell>
+              <Table.HeaderCell>FG3A</Table.HeaderCell>
+              <Table.HeaderCell>FG3PCT</Table.HeaderCell>
+              <Table.HeaderCell>FTM</Table.HeaderCell>
+              <Table.HeaderCell>FTA</Table.HeaderCell>
+              <Table.HeaderCell>FTPCT</Table.HeaderCell>
+              <Table.HeaderCell>OREB</Table.HeaderCell>
+              <Table.HeaderCell>DREB</Table.HeaderCell>
+              <Table.HeaderCell>REB</Table.HeaderCell>
+              <Table.HeaderCell>AST</Table.HeaderCell>
+              <Table.HeaderCell>STL</Table.HeaderCell>
+              <Table.HeaderCell>BLK</Table.HeaderCell>
+              <Table.HeaderCell>TO</Table.HeaderCell>
+              <Table.HeaderCell>PF</Table.HeaderCell>
+              <Table.HeaderCell>PTS</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+             <Table.Row>
+                <Table.Cell>{this.state.playerStats["games_played"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["min"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fgm"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fta"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fg_pct"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fg3m"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fg3a"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fg3_pct"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["ftm"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["fta"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["ft_pct"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["oreb"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["dreb"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["reb"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["ast"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["stl"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["blk"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["turnover"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["pf"]}</Table.Cell>
+                <Table.Cell>{this.state.playerStats["pts"]}</Table.Cell>
+              </Table.Row>
+          </Table.Body>
+        </Table>
         </div>
         <div className="chart">
-          <h3>Bubble Game Stats</h3>
+          <h2>Bubble Game Stats</h2>
           <div className="dropdown">
           <Menu compact>
             <Dropdown 
