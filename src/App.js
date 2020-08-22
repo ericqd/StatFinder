@@ -102,6 +102,14 @@ class App extends Component {
         rebArr.push(data.data[i]["reb"])
       }
       console.log(labelArr)
+      if(labelArr[labelArr.length - 1] === "2020-07-30"){
+        labelArr = labelArr.filter(element => element !== "2020-07-30");
+        labelArr.unshift("2020-07-30")
+      }
+      else if(labelArr[labelArr.length - 1] === "2020-07-31"){
+        labelArr = labelArr.filter(element => element !== "2020-07-31");
+        labelArr.unshift("2020-07-31")
+      }
       if(newData.value === 1){
         this.setState({
           chartData: {
