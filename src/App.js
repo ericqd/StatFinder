@@ -111,6 +111,9 @@ class App extends Component {
         labelArr = labelArr.filter(element => element !== "2020-07-31");
         labelArr.unshift("2020-07-31")
       }
+      else if(labelArr.length === 0){
+        alert("Player did not play in bubble")
+      }
       if(newData.value === 1){
         this.setState({
           chartData: {
@@ -248,11 +251,8 @@ class App extends Component {
         </div>
         <div className="playerInfo">
           <div>
-            <h3>
-              {this.state.playerInfo.firstName} {this.state.playerInfo.lastName}
-              <br/>
-              {this.state.playerInfo.position} | {this.state.playerInfo.team}
-            </h3>
+            <h3>{this.state.playerInfo.firstName} {this.state.playerInfo.lastName}</h3>
+            <div>Position: {this.state.playerInfo.position} | Team: {this.state.playerInfo.team} </div>
           </div>
         </div>
         <div className="table"> 
