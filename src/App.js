@@ -46,7 +46,14 @@ class App extends Component {
     fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerId}`)
       .then(res => res.json())
       .then(data => {
-        this.setState({playerStats: data.data[0]})
+        if(data.data.length < 1){
+          alert("Player you entered has not played this season")
+          this.setState({playerStats:{}})
+          this.setState({chartData:{}})
+        }
+        else{
+          this.setState({playerStats: data.data[0]})
+        }
       })
       .catch(err => console.log(err))
   }
