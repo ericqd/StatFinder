@@ -46,7 +46,6 @@ class App extends Component {
     fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerId}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data.data)
         this.setState({playerStats: data.data[0]})
       })
       .catch(err => console.log(err))
@@ -69,10 +68,6 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.getPlayerId()
-    console.log(this.state.playerKey)
-    console.log(this.state.playerName)
-    console.log(this.state.playerStats)
-    console.log(this.state.chartData)
   }
   handleSearch = (e) => {
     const split = e.target.value.split(" ").join("_")
