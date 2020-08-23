@@ -14,7 +14,7 @@
 }
 .App .playerInfo{
   padding: 5px;
-  color: #00BFFF;
+  color: rgba(20,255,101,1);
 }
 .App .chart h2{
   display:flex;

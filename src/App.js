@@ -10,7 +10,8 @@ class App extends Component {
       playerStats: {},
       chartData:{},
       playerKey: {},
-      playerInfo:{}
+      playerInfo:{},
+      options:{}
     }
   }
 
@@ -121,12 +122,28 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: ptsArr,
-                borderColor: "rgba(0,191,255,1)",
+                borderColor: "rgba(20,255,101,1)",
                 backgroundColor:[
-                  "rgba(0,191,255,1)"
+                  "rgba(20,255,101,1)"
                 ]
               }
             ]
+          },
+          options: {
+            responsive:true,
+            maintainAspectRatio: false,
+            scales:{
+              yAxes: [{
+                ticks:{
+                  fontColor: "#F3F3F3",
+                }
+              }],
+              xAxes:[{
+                ticks:{
+                  fontColor: '#F3F3F3'
+                }
+              }]
+            }
           }
         })
       }
@@ -141,12 +158,28 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: astArr,
-                borderColor: "rgba(0,191,255,1)",
+                borderColor: "rgba(20,255,101,1)",
                 backgroundColor:[
-                  "rgba(0,191,255,1)"
+                  "rgba(20,255,101,1)"
                 ]
               }
             ]
+          },
+          options: {
+            responsive:true,
+            maintainAspectRatio: false,
+            scales:{
+              yAxes: [{
+                ticks:{
+                  fontColor: "#F3F3F3",
+                }
+              }],
+              xAxes:[{
+                ticks:{
+                  fontColor: '#F3F3F3'
+                }
+              }]
+            }
           }
         })
       }
@@ -161,12 +194,28 @@ class App extends Component {
                 fill: false,
                 lineTension: 0.5,
                 data: rebArr,
-                borderColor: "rgba(0,191,255,1)",
+                borderColor: "rgba(20,255,101,1)",
                 backgroundColor:[
-                  "rgba(0,191,255,1)"
+                  "rgba(20,255,101,1)"
                 ]
               }
-            ]
+            ],
+          },
+          options: {
+            responsive:true,
+            maintainAspectRatio: false,
+            scales:{
+              yAxes: [{
+                ticks:{
+                  fontColor: "#F3F3F3",
+                }
+              }],
+              xAxes:[{
+                ticks:{
+                  fontColor: '#F3F3F3'
+                }
+              }]
+            }
           }
         })
       }
@@ -277,7 +326,7 @@ class App extends Component {
           key={this.state.chartData.key}
           width={250}
           height={250}
-          options={{responsive:true, maintainAspectRatio:false}}
+          options={this.state.options}
         />
         </div>
       </div>
