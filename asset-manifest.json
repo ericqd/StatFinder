@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/StatFinder/static/css/main.ef9c9d8c.chunk.css",
+    "main.js": "/StatFinder/static/js/main.375c47a6.chunk.js",
+    "main.js.map": "/StatFinder/static/js/main.375c47a6.chunk.js.map",
+    "runtime-main.js": "/StatFinder/static/js/runtime-main.f7f50389.js",
+    "runtime-main.js.map": "/StatFinder/static/js/runtime-main.f7f50389.js.map",
+    "static/css/2.4043b401.chunk.css": "/StatFinder/static/css/2.4043b401.chunk.css",
+    "static/js/2.1f44810e.chunk.js": "/StatFinder/static/js/2.1f44810e.chunk.js",
+    "static/js/2.1f44810e.chunk.js.map": "/StatFinder/static/js/2.1f44810e.chunk.js.map",
+    "index.html": "/StatFinder/index.html",
+    "precache-manifest.17751de8764d3a46fd377b0d374f7bbb.js": "/StatFinder/precache-manifest.17751de8764d3a46fd377b0d374f7bbb.js",
+    "service-worker.js": "/StatFinder/service-worker.js",
+    "static/css/2.4043b401.chunk.css.map": "/StatFinder/static/css/2.4043b401.chunk.css.map",
+    "static/css/main.ef9c9d8c.chunk.css.map": "/StatFinder/static/css/main.ef9c9d8c.chunk.css.map",
+    "static/js/2.1f44810e.chunk.js.LICENSE.txt": "/StatFinder/static/js/2.1f44810e.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/StatFinder/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7f50389.js",
+    "static/css/2.4043b401.chunk.css",
+    "static/js/2.1f44810e.chunk.js",
+    "static/css/main.ef9c9d8c.chunk.css",
+    "static/js/main.375c47a6.chunk.js"
+  ]
+}
