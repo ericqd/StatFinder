@@ -90,7 +90,6 @@ class App extends Component {
     this.setState({
       [newData.name]: newData.value
     })
-    console.log(newData.value)
     fetch(`https://www.balldontlie.io/api/v1/stats?seasons[]=2019&player_ids[]=${this.state.playerKey.id}&start_date='2020-07-30'&end_date='2020-08-14'`)
     .then(res => res.json())
     .then(data => {
@@ -104,7 +103,6 @@ class App extends Component {
         astArr.push(data.data[i]["ast"])
         rebArr.push(data.data[i]["reb"])
       }
-      console.log(labelArr)
       if(labelArr[labelArr.length - 1] === "2020-07-30"){
         labelArr = labelArr.filter(element => element !== "2020-07-30");
         labelArr.unshift("2020-07-30")
