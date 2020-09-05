@@ -103,15 +103,8 @@ class App extends Component {
         astArr.push(data.data[i]["ast"])
         rebArr.push(data.data[i]["reb"])
       }
-      if(labelArr[labelArr.length - 1] === "2020-07-30"){
-        labelArr = labelArr.filter(element => element !== "2020-07-30");
-        labelArr.unshift("2020-07-30")
-      }
-      else if(labelArr[labelArr.length - 1] === "2020-07-31"){
-        labelArr = labelArr.filter(element => element !== "2020-07-31");
-        labelArr.unshift("2020-07-31")
-      }
-      else if(labelArr.length === 0){
+      labelArr.sort();
+      if(labelArr.length === 0){
         alert("Player did not play in bubble")
       }
       if(newData.value === 1){
